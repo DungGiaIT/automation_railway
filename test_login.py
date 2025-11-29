@@ -9,6 +9,7 @@ class TestCase01(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome()
+        self.driver.implicitly_wait(5)
 
         self.login_page = LoginPage(self.driver)
         self.home_page = HomePage(self.driver)

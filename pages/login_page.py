@@ -1,5 +1,7 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class LoginPage:
@@ -25,8 +27,10 @@ class LoginPage:
         self.driver.execute_script('arguments[0].scrollIntoView();', login_btn)
         login_btn.click()
 
-        from time import sleep
-        sleep(3) # Temporary work around
+        # Waiting for the page to load after clicking the login button
+        # Wait for the login_btn is disappear (or not display or invisibility)
+        driver_wait = WebDriverWait(self.driver, timeout=10)
+        driver_wait.until(EC.invisibility_of_element(login_btn))
 
     def login(self, username: str, password: str):
         self.enter_email(username)
