@@ -7,6 +7,8 @@ from pages.time_table_page import TimeTablePage
 from pages.ticket_price_page import TicketPricePage
 from pages.book_ticket_page import BookTicketPage
 from pages.register_page import RegisterPage
+from pages.my_ticket_page import MyTicketPage
+from pages.change_password_page import ChangePasswordPage
 
 class HomePage:
 
@@ -19,6 +21,9 @@ class HomePage:
     NAV_BAR_BOOK_TICKET_LOCATOR = (By.LINK_TEXT, 'Book ticket')
     NAV_BAR_REGISTER_LOCATOR = (By.LINK_TEXT, 'Register')
     NAV_BAR_CREATE_ACCOUNT_LOCATOR = (By.LINK_TEXT, 'create an account')
+    NAV_BAR_MY_TICKET_LOCATOR = (By.LINK_TEXT,'My ticket')
+    NAV_BAR_CHANGE_PASSWORD_LOCATOR = (By.LINK_TEXT,'Change password')
+    NAV_BAR_LOG_OUT_LOCATOR = (By.LINK_TEXT,'Log out')
     WELCOME_MSG_LOCATOR = (By.CSS_SELECTOR, 'div.account strong')
     
     def __init__(self, webdriver: WebDriver):
@@ -59,6 +64,18 @@ class HomePage:
     def go_to_create_account(self):
         self.driver.find_element(*self.NAV_BAR_CREATE_ACCOUNT_LOCATOR).click()
         return RegisterPage(self.driver)
+    
+    def go_to_my_ticket_page(self):
+        self.driver.find_element(*self.NAV_BAR_MY_TICKET_LOCATOR).click()
+        return MyTicketPage(self.driver)
+    
+    def go_to_change_password_page(self):
+        self.driver.find_element(*self.NAV_BAR_CHANGE_PASSWORD_LOCATOR).click()
+        return ChangePasswordPage(self.driver)
+    
+    def go_to_log_out(self):
+        self.driver.find_element(*self.NAV_BAR_LOG_OUT_LOCATOR).click()
+        return HomePage(self.driver)
 
     def get_welcome_msg(self) -> str:
         return self.driver.find_element(*self.WELCOME_MSG_LOCATOR).text

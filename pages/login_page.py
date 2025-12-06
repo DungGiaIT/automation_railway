@@ -8,7 +8,7 @@ class LoginPage:
 
     EMAIL_TXT_LOCATOR = (By.ID, 'username')
     PASSWORD_TXT_LOCATOR = (By.NAME, 'password')
-    LOGIN_BTN_LOCATOR = (By.CSS_SELECTOR, 'input[value=login]')
+    LOGIN_BTN_LOCATOR = (By.CSS_SELECTOR, 'input[value=Login]')
 
     # Constructor
     def __init__(self, driver: WebDriver):
