@@ -12,6 +12,7 @@ from pages.book_ticket_page import BookTicketPage
 from pages.register_page import RegisterPage
 from pages.my_ticket_page import MyTicketPage
 from pages.change_password_page import ChangePasswordPage
+from pages.forget_password_page import ForgotPasswordPage
 
 class BaseTest(unittest.TestCase):
 
@@ -29,7 +30,8 @@ class BaseTest(unittest.TestCase):
         self.register_page = RegisterPage(self.driver)
         self.my_ticket_page = MyTicketPage(self.driver)
         self.change_password_page = ChangePasswordPage(self.driver)
-
+        self.forget_password_page = ForgotPasswordPage(self.driver)
+        
         self.driver.get('http://railwayb2.somee.com/')
 
     def tearDown(self):

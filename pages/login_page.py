@@ -9,6 +9,9 @@ class LoginPage:
     EMAIL_TXT_LOCATOR = (By.ID, 'username')
     PASSWORD_TXT_LOCATOR = (By.NAME, 'password')
     LOGIN_BTN_LOCATOR = (By.CSS_SELECTOR, 'input[value=Login]')
+    MESSAGE_ERROR_LOGIN_FORM = (By.CSS_SELECTOR, ".message.error.LoginForm")
+    PASSWORD_FIELD = (By.ID, "password")
+    FORGOT_PASSWORD_LINK = (By.CSS_SELECTOR, "a[href='/Account/ForgotPassword.cshtml']")
 
     # Constructor
     def __init__(self, driver: WebDriver):
@@ -37,3 +40,12 @@ class LoginPage:
         # 
         self.enter_password(password)
         self.click_login_btn()
+
+    def get_error_message(self):
+        return self.driver.find_element(*self.MESSAGE_ERROR_LOGIN_FORM).text.strip()
+    
+    def get_password_type(self):
+        return self.driver.find_element(*self.PASSWORD_FIELD).get_attribute("type")
+    
+    def click_forgot_password(self):
+        self.driver.find_element(*self.FORGOT_PASSWORD_LINK).click()
