@@ -82,39 +82,39 @@ class TestHome(BaseTest):
         self.home_page.go_to_log_out()
         self.assertIn("/Page/HomePage.cshtml", self.driver.current_url)
 
-    # def test_hom_005_tab_highlight_change(self):
-    #     tabs = [
-    #         # self.home_page.NAV_BAR_FAQ_LOCATOR,
-    #         self.home_page.NAV_BAR_CONTACT_LOCATOR,
-    #         self.home_page.NAV_BAR_HOME_LOCATOR,
-    #         self.home_page.NAV_BAR_TIMETABLE_LOCATOR,
-    #         self.home_page.NAV_BAR_TICKET_PRICE_LOCATOR,
-    #         self.home_page.NAV_BAR_BOOK_TICKET_LOCATOR,
-    #         self.home_page.NAV_BAR_REGISTER_LOCATOR,
-    #         self.home_page.NAV_BAR_LOGIN_LOCATOR
-    #     ]
+    def test_hom_005_tab_highlight_change(self):
+        tabs = [
+            # self.home_page.NAV_BAR_FAQ_LOCATOR,
+            self.home_page.NAV_BAR_CONTACT_LOCATOR,
+            self.home_page.NAV_BAR_HOME_LOCATOR,
+            self.home_page.NAV_BAR_TIMETABLE_LOCATOR,
+            self.home_page.NAV_BAR_TICKET_PRICE_LOCATOR,
+            self.home_page.NAV_BAR_BOOK_TICKET_LOCATOR,
+            self.home_page.NAV_BAR_REGISTER_LOCATOR,
+            self.home_page.NAV_BAR_LOGIN_LOCATOR
+        ]
 
-    #     # Lấy màu hiện tại
-    #     for tab in tabs:
-    #         element = self.driver.find_element(*tab)
-    #         before_color = element.value_of_css_property('color')
+        # Lấy màu hiện tại
+        for tab in tabs:
+            element = self.driver.find_element(*tab)
+            before_color = element.value_of_css_property('color')
 
-    #         element.click()
+            element.click()
 
-    #         # Đợi elemennt thay đổi UI
-    #         WebDriverWait(self.driver, 5).until(
-    #             EC.visibility_of_element_located(tab)
-    #         )
+            # Đợi elemennt thay đổi UI
+            WebDriverWait(self.driver, 5).until(
+                EC.visibility_of_element_located(tab)
+            )
 
-    #         element_after = self.driver.find_element(*tab)
-    #         after_color = element_after.value_of_css_property('color')
+            element_after = self.driver.find_element(*tab)
+            after_color = element_after.value_of_css_property('color')
 
-    #         # So sánh màu
-    #         self.assertNotEqual(
-    #             before_color,
-    #             after_color,
-    #             f"Expected highlight color change after selecting tab {element.text}"
-    #         )
+            # So sánh màu
+            self.assertNotEqual(
+                before_color,
+                after_color,
+                f"Expected highlight color change after selecting tab {element.text}"
+            )
 
     # def test_no_broken_images(self):
     #     images = self.driver.find_elements(By.TAG_NAME, "img")

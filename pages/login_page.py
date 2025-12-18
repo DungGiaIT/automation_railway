@@ -11,7 +11,7 @@ class LoginPage:
     LOGIN_BTN_LOCATOR = (By.CSS_SELECTOR, 'input[value=Login]')
     MESSAGE_ERROR_LOGIN_FORM = (By.CSS_SELECTOR, ".message.error.LoginForm")
     PASSWORD_FIELD = (By.ID, "password")
-    FORGOT_PASSWORD_LINK = (By.CSS_SELECTOR, "a[href='/Account/ForgotPassword.cshtml']")
+    FORGOT_PASSWORD_LINK = (By.XPATH, "//a[text()='Forgot Password page']")
 
     # Constructor
     def __init__(self, driver: WebDriver):
@@ -32,14 +32,19 @@ class LoginPage:
 
         # Waiting for the page to load after clicking the login button
         # Wait for the login_btn is disappear (or not display or invisibility)
-        driver_wait = WebDriverWait(self.driver, timeout=10)
-        driver_wait.until(EC.invisibility_of_element(login_btn))
+       
 
     def login(self, username: str, password: str):
         self.enter_email(username)
         # 
         self.enter_password(password)
         self.click_login_btn()
+        WebDriverWait(self.driver, 10).until(
+            EC.any_of(
+                EC.visibility_of_element_located(self.MESSAGE_ERROR_LOGIN_FORM),
+                EC.invisibility_of_element_located(self.LOGIN_BTN_LOCATOR)
+            )
+    )
 
     def get_error_message(self):
         return self.driver.find_element(*self.MESSAGE_ERROR_LOGIN_FORM).text.strip()
